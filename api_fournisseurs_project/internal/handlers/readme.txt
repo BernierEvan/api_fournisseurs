@@ -1,4 +1,6 @@
-Ce dossier contient les gestionnaires HTTP qui traitent les requêtes entrantes et renvoient les réponses appropriées.package handlers
+Ce dossier contient les gestionnaires HTTP qui traitent les requêtes entrantes et renvoient les réponses appropriées
+
+.package handlers
 
 import (
 	"net/http"

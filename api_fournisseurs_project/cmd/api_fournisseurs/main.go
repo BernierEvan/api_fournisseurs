@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	println(fournisseurs.SimulateResultsSearch("AZEA"))
+	
 }

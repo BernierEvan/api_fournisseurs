@@ -1,9 +1,9 @@
 package main
 
-import(
-	"api_fournisseurs_project/pkg/utils/fournisseurs"
+import (
+	"github.com/BernierEvan/api_fournisseurs/api_fournisseurs_project/pkg/utils/fournisseurs"
 )
 
-func main(){
-	SimulateResultsSearch("AZEA")
+func main() {
+	println(fournisseurs.SimulateResultsSearch("AZEA"))
 }

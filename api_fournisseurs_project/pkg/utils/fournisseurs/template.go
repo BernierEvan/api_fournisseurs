@@ -1,12 +1,14 @@
-package fournisseurs
+// template.go est le squelette du code  de recherche avec les différents API des différents sites -> Il fautdra rajouter le fait de faire des imports automatiques de package et le fait que les packages doivent communiquer entre eux pour que lorsque l'on rajoute l'API d'un nouveau fournisseur, on ait pas besoin de changer le code.
+
+
+package fournisseurs // package
 
 import (
     
-    "time"
+    "time" //importe le package temps deja disponible dans go
 )
 
-// Produit : structure contenant les infos récupérées
-type Produit struct {
+type Produit struct { // creation de la structure produit qui récuperera
     Nom            string  `json:"nom"`
     Reference      string  `json:"reference"`
     PrixUnitaire   float64 `json:"prix_unitaire"`
@@ -15,7 +17,7 @@ type Produit struct {
     RefFournisseur string  `json:"ref_fournisseur"`
 }
 
-func SimulateResultsSearch(ref string)(*Produit, error){
+func SimulateResultsSearch(ref string)(*Produit, error){ //création de la fonction simulation de résultat pour voir si l'affichage du résultat marcherait bien
 	time.Sleep(500 * time.Millisecond)
 
 	produit := &Produit{
@@ -35,35 +37,34 @@ func SimulateResultsSearch(ref string)(*Produit, error){
 	// example to fail (all the "real" tests should pass).
 
 	// xOutput: voluntarily fail the Example output.
-}package main
+} package main
 
-import (
+import ( //importation des différents packages nécessaires
 	"fmt"
 	"log"
 	"net/http"
-
 	"github.com/PuerkitoBio/goquery"
 )
 
-func main() {
+func main() { //function principale
 	// Request the HTML page.
-	res, err := http.Get("http://metalsucks.net")
+	res, err := http.Get("http://metalsucks.net") //on accède à un site web
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer res.Body.Close()
-	if res.StatusCode != 200 {
+	if res.StatusCode != 200 { // si le code est a 200 c'est a dire réussie
 		log.Fatalf("status code error: %d %s", res.StatusCode, res.Status)
 	}
 
 	// Load the HTML document
-	doc, err := goquery.NewDocumentFromReader(res.Body)
+	doc, err := goquery.NewDocumentFromReader(res.Body) //alors on load le body dans un document
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	// Find the review items
-	doc.Find(".sidebar-reviews article .content-block").Each(func(i int, s *goquery.Selection) {
+	doc.Find(".sidebar-reviews article .content-block").Each(func(i int, s *goquery.Selection) { // et enfin on recherche dedans si il y a les éléments que l'on veut. C'est a dire ici les éléments de la structure produit crée précédemment dans le template.go
 		// For each item found, get the band and title
 		band := s.Find("a").Text()
 		title := s.Find("i").Text()

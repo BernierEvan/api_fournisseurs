@@ -66,7 +66,7 @@ func main() { //function principale
 	// Find the review items
 	doc.Find(".sidebar-reviews article .content-block").Each(func(i int, s *goquery.Selection) { // et enfin on recherche dedans si il y a les éléments que l'on veut. C'est a dire ici les éléments de la structure produit crée précédemment dans le template.go
 		// For each item found, get the band and title
-		band := s.Find("a").Text()
-		title := s.Find("i").Text()
-		fmt.Printf("Review %d: %s - %s\n", i, band, title)
+		band := s.Find("a").Text() // permet de recupérer le texte ou se trouve x element et de le mettre dans la variable band.
+		title := s.Find("i").Text() // permet de recupérer le texte ou ser trouve x element et de le mettre dans la variable title
+		fmt.Printf("Review %d: %s - %s\n", i, band, title) //permet de print et d'associer chaque valeur % avec celles qui suivent dans le fmt.Printf
 	})
